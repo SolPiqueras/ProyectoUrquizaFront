@@ -76,9 +76,9 @@
 								<div class="container">
 									<div class="form sign-in-container">
 										<h3>Iniciar sesión</h3>
-										<form class="formulario2">
-											<input type="email" placeholder="Email" id="email2">
-											<input type="password" placeholder="Contraseña" id="password2">
+										<form class="formulario2" action="login.php" method="post">
+											<input type="email" placeholder="Email" id="email2" name="usuario">
+											<input type="password" placeholder="Contraseña" id="password2" name="clave">
 											<input type="submit" value="Iniciar Sesión">
 										</form>
 									</div>
@@ -95,6 +95,13 @@
 
 		<!--  C  A  B  E  C  E  R  A  -->
 		<div class="container  bg-white encabezado "> 
+		<?php
+            if (isset($_GET['mensaje']))
+            {
+              echo '<div id="mensaje" class="alert alert-warning text-center">
+              <p>'.$_GET['mensaje'].'</p></div>';
+            }
+          ?>
 			<div class="row ">
 				<div class="col d-none d-sm-block">
 					<img class="img-fluid mt-3" src="img/encabezados/logotipo1.png" alt=""><!--img/encabezados/11gde.png PC-->
