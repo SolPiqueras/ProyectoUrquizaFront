@@ -24,6 +24,7 @@ if (isset($_SESSION['usuario'])) {
       echo '<h2>Roles Asignados:</h2><br>';
       foreach($roles as $rol){
         switch($rol){
+          case 0: header('Location: home-admin.php'); break;
           case 1: echo '<h3>Regente</h3>'; break;
           case 2: echo '<h3>Profesor</h3>'; break;
           case 3: echo '<h3>Alumno</h3>'; break;
