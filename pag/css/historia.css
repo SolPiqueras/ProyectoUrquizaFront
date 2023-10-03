@@ -1,0 +1,41 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0b3861
+}
+
+.h1 {
+    font-size: 36px;
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+p {
+    padding-top: 2vh;
+    font-size: 16px;
+    line-height: 1.6;
+    padding-left: 50vh !important;
+    padding-right: 50vh !important;
+    text-align: justify;
+}
+
+.img-institucional {
+    width: 75%;
+    height: 50%;
+    text-align: center;
+    padding-left: 50vh !important;
+}
+
+.encabezado {
+    margin-top: 30px !important;
+    margin-bottom: 50px !important;
+}
+
+img{
+    padding-bottom: 2vh;
+}
