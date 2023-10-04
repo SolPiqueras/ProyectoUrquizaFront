@@ -7,7 +7,7 @@ require_once 'model/Usuario.php';
 // } else {
 //   header('Location: index.php');
 // }
-// if (isset($_POST['email']) && isset($_POST['clave']))
+if (isset($_POST['email']) && isset($_POST['clave']))
 {
 
     $roles = $_POST['rol'];
