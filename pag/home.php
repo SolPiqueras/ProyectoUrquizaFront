@@ -68,9 +68,9 @@
 								<div class="container">
 									<div class="form sign-in-container">
 										<h3>Iniciar sesión</h3>
-										<form class="formulario2">
-											<input type="email" placeholder="Email" id="email2">
-											<input type="password" placeholder="Contraseña" id="password2">
+										<form class="formulario2" action="login.php" method="post">
+											<input type="email" placeholder="Email" id="email2" name="usuario">
+											<input type="password" placeholder="Contraseña" id="password2" name= "clave">
 											<input type="submit" value="Iniciar Sesión">
 										</form>
 									</div>

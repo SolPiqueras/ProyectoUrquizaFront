@@ -80,6 +80,7 @@ if (isset($_SESSION['usuario'])) {
         </div>
         <input type="submit" value="Guardar Cambios" class="btn btn-primary mb-3">
     </form>
+    <a href="home-admin.php" class="btn btn-secondary mb-3">Volver</a>
     </div>
     <script src="js/upload.js"></script>
     <script>
