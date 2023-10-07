@@ -6,6 +6,7 @@
 	<title>Nivel Terciario - Urquiza</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/publicaciones.css">
 	<link rel="stylesheet" href="fonts/estilos.css">
 	<link rel="stylesheet" href="fonts/style.css">
 </head>
@@ -26,24 +27,17 @@
 				
 				<div class="collapse  navbar-collapse" id="navbar">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Académico
-							</a>
-							<div class="dropdown-menu" aria-labelledby="menu-categorias">
-								<a href="archivos/calendario_academico/nivel_terciario_2023.pdf" target="_blank" class="dropdown-item">Calendario Académico 2023</a>
-								<a href="archivos/terciario/homologaciones.pdf" target="_blank" class="dropdown-item">Homologaciones</a>
-							</div>
+						<li class="nav-item ">
+							<a href="./historia.html" class="nav-link">Conocenos</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" id="menu-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Desarrollo de Software
 							</a>
 							<div class="dropdown-menu" aria-labelledby="menu-categorias">					
-								<a href="archivos/terciario/horarios_cali.pdf" target="_blank" class="dropdown-item">Horarios</a>
-								<a href="terciario_examenes_cp.php" class="dropdown-item">Mesas de Exámenes</a>
-								<a href="terciario_caligrafo_plan_estudio.php" class="dropdown-item">Plan de Estudio</a>
-								<a href="terciario_caligrafo.php" class="dropdown-item">Breve Reseña</a>
+								<a href="./pdf/ds.pdf" class="dropdown-item">Correlatividades</a>
+								<a href="./pdf/Estructura_Curricular_ds.pdf" class="dropdown-item">Plan de Estudio</a>
+								<a href="./ds.html" class="dropdown-item">Breve Reseña</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -51,10 +45,9 @@
 								Insfraestructura 
 							</a>
 							<div class="dropdown-menu" aria-labelledby="menu-categorias">
-								<a href="archivos/terciario/horarios_admi.pdf" target="_blank" class="dropdown-item">Horarios</a>
-								<a href="terciario_examenes_tuae.php" class="dropdown-item">Mesas de Exámenes</a>
-								<a href="terciario_administracion_plan_estudio.php" class="dropdown-item">Plan de Estudio</a>
-								<a href="terciario_administracion.php" class="dropdown-item">Breve Reseña</a>
+								<a href="./pdf/iti.pdf" class="dropdown-item">Correlatividades</a>
+								<a href="./pdf/Estructura_Curricular_iti.pdf" class="dropdown-item">Plan de Estudio</a>
+								<a href="./iti.html" class="dropdown-item">Breve Reseña</a>
 							</div>
 						</li>
 							<li class="nav-item dropdown">
@@ -62,10 +55,9 @@
 								Analista Funcional 
 							</a>
 							<div class="dropdown-menu" aria-labelledby="menu-categorias">
-								<a href="archivos/terciario/horarios_admi.pdf" target="_blank" class="dropdown-item">Horarios</a>
-								<a href="terciario_examenes_tuae.php" class="dropdown-item">Mesas de Exámenes</a>
-								<a href="terciario_administracion_plan_estudio.php" class="dropdown-item">Plan de Estudio</a>
-								<a href="terciario_administracion.php" class="dropdown-item">Breve Reseña</a>
+								<a href="./pdf/af.pdf" class="dropdown-item">Correlatividades</a>
+								<a href="./pdf/Estructura_Curricular_af.pdf" class="dropdown-item">Plan de Estudio</a>
+								<a href="./af.html" class="dropdown-item">Breve Reseña</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -76,9 +68,9 @@
 								<div class="container">
 									<div class="form sign-in-container">
 										<h3>Iniciar sesión</h3>
-										<form class="formulario2" action="login.php" method="post">
-											<input type="email" placeholder="Email" id="email2" name="usuario">
-											<input type="password" placeholder="Contraseña" id="password2" name="clave">
+										<form class="formulario2">
+											<input type="email" placeholder="Email" id="email2">
+											<input type="password" placeholder="Contraseña" id="password2">
 											<input type="submit" value="Iniciar Sesión">
 										</form>
 									</div>
@@ -95,13 +87,6 @@
 
 		<!--  C  A  B  E  C  E  R  A  -->
 		<div class="container  bg-white encabezado "> 
-		<?php
-            if (isset($_GET['mensaje']))
-            {
-              echo '<div id="mensaje" class="alert alert-warning text-center">
-              <p>'.$_GET['mensaje'].'</p></div>';
-            }
-          ?>
 			<div class="row ">
 				<div class="col d-none d-sm-block">
 					<img class="img-fluid mt-3" src="img/encabezados/logotipo1.png" alt=""><!--img/encabezados/11gde.png PC-->
@@ -206,6 +191,44 @@
 				</div>
 			</div>	
 		</div>
+		
+		<section class="post-list">
+			<div class="content1">
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+			</div>
+		</section>
 	</div>
 
 		<!--  P  I  E  -  P  A  G  I  N  A  -->
