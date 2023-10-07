@@ -2,29 +2,12 @@
 require_once 'controller/ControladorSesion.php';
 require_once 'model/Usuario.php';
 session_start();
-if (isset($_SESSION['usuario'])) {
-  $usuario = unserialize($_SESSION['usuario']);
-} else {
-  header('Location: index.php');
-}
-if (isset($_POST['email']) && isset($_POST['clave']))
-{
+// if (isset($_SESSION['usuario'])) {
+//   $usuario = unserialize($_SESSION['usuario']);
+// } else {
+//   header('Location: index.php');
+// }
 
-    $roles = $_POST['rol'];
-
-    $cs = new ControladorSesion();
-    $result = $cs->create($_POST['cuil'], $_POST['email'], $roles, $_POST['nombre'], $_POST['apellido'], $_POST['clave']);
-
-    if( $result[0] === true )
-    {
-        $redirigir = 'create.php?mensaje='.$result[1];
-    }
-    else
-    {
-        $redirigir = 'create.php?mensaje='.$result[1];
-    }
-    header('Location: ' . $redirigir);
-}
 ?>
 
 <!DOCTYPE html>
@@ -74,9 +57,30 @@ if (isset($_POST['email']) && isset($_POST['clave']))
                     </div>                
                 <input type="submit" value="Registrar" class="btn btn-primary mb-2">
             </form>
+            <a href="home-admin.php" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 
     <script src="js/checkbox.js"></script>
 </body>
 </html>
+<?php
+if (isset($_POST['email']) && isset($_POST['clave']))
+{
+
+    $roles = $_POST['rol'];
+
+    $cs = new ControladorSesion();
+    $result = $cs->create($_POST['cuil'], $_POST['email'], $roles, $_POST['nombre'], $_POST['apellido'], $_POST['clave']);
+
+    if( $result[0] === true )
+    {
+        $redirigir = 'create.php?mensaje='.$result[1];
+    }
+    else
+    {
+        $redirigir = 'create.php?mensaje='.$result[1];
+    }
+    header('Location: ' . $redirigir);
+}
+?>

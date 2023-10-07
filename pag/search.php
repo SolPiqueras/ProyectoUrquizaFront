@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +27,7 @@
         <div class="form-group">
             <input type="submit" value="Buscar" class="btn btn-primary">
         </div>
+        <a href="home-admin.php" class="btn btn-secondary">Volver</a>
     </form>
 </body>
 </html>

@@ -26,34 +26,12 @@ if (isset($_SESSION['usuario'])) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <ul class="nav navbar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link" href="home-admin.php">Inicio</a>
+            <li class="nav-item text-white px-2">
+                <h2>Administrador</h2>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Bolsa de trabajo</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="estadisticas.php">Ver estadísticas</a>
-            </li>
-
-            <li class="nav-item active">
+            <li class="nav-item active ps-4">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" class="btn btn-primary">Usuarios</button>
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="create.php">Crear usuario</a>
-                            <a class="dropdown-item" href="search.php">Cambiar usuario</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item active">
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <button type="button" class="btn btn-primary">Secciones</button>
+                    <button type="button" class="btn btn-primary">Accesos</button>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -62,6 +40,19 @@ if (isset($_SESSION['usuario'])) {
                             <a class="dropdown-item" href="#">Bedelia</a>
                             <a class="dropdown-item" href="#">Secretaria</a>
                             <a class="dropdown-item" href="alumno.php">Alumnos</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item active">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-primary">Gestión de Usuarios</button>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="create.php">Crear usuario</a>
+                            <a class="dropdown-item" href="search.php">Modificar usuario</a>
                         </div>
                     </div>
                 </div>
@@ -79,6 +70,14 @@ if (isset($_SESSION['usuario'])) {
                         </div>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="home.php">Bolsa de trabajo</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="estadisticas.php">Ver estadísticas</a>
             </li>
 
             <li class="nav-item">
