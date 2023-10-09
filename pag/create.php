@@ -1,12 +1,12 @@
 <?php
 require_once 'controller/ControladorSesion.php';
 require_once 'model/Usuario.php';
-session_start();
-if (isset($_SESSION['usuario'])) {
-  $usuario = unserialize($_SESSION['usuario']);
-} else {
-  header('Location: index.php');
-}
+// session_start();
+// if (isset($_SESSION['usuario'])) {
+//   $usuario = unserialize($_SESSION['usuario']);
+// } else {
+//   header('Location: index.php');
+// }
 if (isset($_POST['email']) && isset($_POST['clave']))
 {
 

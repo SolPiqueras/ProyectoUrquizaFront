@@ -6,6 +6,7 @@
 	<title>Nivel Terciario - Urquiza</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="./css/publicacion.css">
 	<link rel="stylesheet" href="fonts/estilos.css">
 	<link rel="stylesheet" href="fonts/style.css">
 </head>
@@ -206,6 +207,46 @@
 				</div>
 			</div>	
 		</div>
+
+		<section class="post-list">
+			<div class="content1">
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+				<article class="post">
+					<div class="post-header">
+						<div class="post-img">Imagen</div>
+					</div>
+					<div class="post-body">
+						<span>Fecha</span>
+						<h2>Titulo</h2>
+						<p>Contenido</p>
+						<a href="" class="post-link">Leer más</a>
+					</div>
+				</article>
+			</div>
+		</section>
+	</div>
+
 	</div>
 
 		<!--  P  I  E  -  P  A  G  I  N  A  -->
