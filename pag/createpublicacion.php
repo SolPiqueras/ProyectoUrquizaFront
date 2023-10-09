@@ -1,4 +1,6 @@
 <?php
+require_once 'controller/ControladorSesion.php';
+date_default_timezone_set("America/Argentina/Buenos_Aires");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,11 +22,11 @@ session_start();
         <h1>Crear Publicación en Sitio</h1>
     </div>
     <div class="col-8 mx-auto">
-    <form method="post" class ="d-flex justify-content-center align-items-start flex-column">
+    <form method="post" class ="d-flex justify-content-center align-items-start flex-column" action="createpublicacion.php" enctype="multipart/form-data">
 
         <div class = "form-group">
             <label>Titulo</label>
-            <input type="text" name="nombre" id="nombre" class='form-control' maxlength="100" required>
+            <input type="text" name="titulo" class='form-control' maxlength="100" required>
         </div>
 
         <div class = "form-group">
@@ -34,7 +36,7 @@ session_start();
 
         <div class = "form-group">
         <label>Descripción</label>
-        <textarea name="" id="" cols="30" rows="10" type="text" class="form-control" placeholder="Escriba un texto"  style="resize: none;"></textarea>
+        <textarea name="descripcion" cols="30" rows="10" type="text" class="form-control" placeholder="Escriba un texto"  style="resize: none;"></textarea>
         </div>
 
         <div class="col-md-12 pull-right">
@@ -49,3 +51,41 @@ session_start();
     </div>
     </body>
 </html>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtiene los valores del formulario
+    $titulo = $_POST['titulo'];
+    $descripcion = $_POST['descripcion'];
+
+    // Procesa la imagen (puedes necesitar más validación y manejo aquí)
+    if ($_FILES['imagen']['error'] === 0) {
+        $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
+    } else {
+        $imagen = null; // Otra opción es proporcionar una imagen predeterminada
+    }
+
+    // Inserta los datos en la base de datos utilizando el controlador
+    $cs = new ControladorSesion();
+
+    // Reemplaza 'tu_cuil' con el valor de cuil del usuario actual
+    $cuil = unserialize($_SESSION['usuario'])->getCuil();
+    $fechaHora = date('Y-m-d H:i:s');
+
+    $resultado = $cs->insertarPublicacion($cuil, $titulo, $imagen, $descripcion, $fechaHora);
+
+    if ($resultado[0]) {
+        // Éxito: La publicación se ha guardado correctamente en la base de datos
+        header('Location: createpublicacion.php?mensaje=Publicación creada exitosamente');
+        exit();
+    } else {
+        // Error: No se pudo guardar la publicación en la base de datos
+        $error_message = "Error al guardar la publicación en la base de datos: " . $resultado[1];
+    }
+}
+
+// Si llegaste aquí, algo salió mal, y puedes mostrar un mensaje de error si es necesario
+if (isset($error_message)) {
+    echo '<div id="mensaje" class="alert alert-danger text-center"><h2>' . $error_message . '</h2></div>';
+}
+?>

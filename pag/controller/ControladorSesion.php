@@ -67,17 +67,35 @@ class ControladorSesion
         }
     }
 
-    public function eliminar(Usuario $usuario)
+    public function insertarPublicacion($cuil, $titulo, $imagen, $descripcion, $fechaHora)
     {
         $repo = new RepositorioUsuario();
-        if($repo->eliminar($usuario))
-        {
-            return [true, "Usuario eliminado correctamente"];
-        } 
-        else
-        {
-            return [false, "Error al eliminar el usuario"];
+
+        // Crea una instancia de la clase Publicacion con los datos proporcionados
+        $publicacion = new Publicacion(null, $cuil, $titulo, $imagen, $descripcion, $fechaHora);
+        
+        $resultado = $repo->insertarPublicacion($publicacion);
+    
+        if ($resultado[0]) {
+            return [true, "La publicación se ha guardado correctamente"];
+        } else {
+            return [false, "Error al guardar la publicación: " . $resultado[1]];
         }
     }
+    
+
+
+    // public function eliminar(Usuario $usuario)
+    // {
+    //     $repo = new RepositorioUsuario();
+    //     if($repo->eliminar($usuario))
+    //     {
+    //         return [true, "Usuario eliminado correctamente"];
+    //     } 
+    //     else
+    //     {
+    //         return [false, "Error al eliminar el usuario"];
+    //     }
+    // }
 }
 ?>

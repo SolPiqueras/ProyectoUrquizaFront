@@ -1,6 +1,7 @@
 <?php
 require_once '.env.php';
 require_once 'model/Usuario.php';
+require_once 'model/publicacion.php';
 
 class RepositorioUsuario
 {
@@ -188,5 +189,33 @@ class RepositorioUsuario
             return [false, "No se pudo Modificar el usuario debido a incompatibilidades con BBDD."];
         }
     }
+
+    public function insertarPublicacion(Publicacion $publicacion)
+    {
+
+        $titulo = $publicacion->getTitulo();
+        $imagen = $publicacion->getImagen();
+        $descripcion = $publicacion->getDescripcion();
+        $cuil = $publicacion->getPersonaCuil();
+        $fechaHora = $publicacion->getFecha();
+        
+        $query = 'INSERT INTO publicacion (titulo, image, descripcion, persona_cuil, fecha_hora)';
+        $query .= ' VALUES (?, ?, ?, ?, ?)';
+        
+        $stmt = self::$conexion->prepare($query);
+        
+        if (!$stmt) {
+            return [false, "Error de preparación de la consulta"];
+        }
+        
+        $stmt->bind_param("sbsss", $titulo, $imagen, $descripcion, $cuil, $fechaHora);
+
+        if ($stmt->execute()) {
+            return [true, "Publicación insertada correctamente"];
+        } else {
+            return [false, "Error al insertar la publicación en la base de datos: " . $stmt->error];
+        }
+    }
+
 }
 ?>

@@ -61,14 +61,16 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `pp2sitio2`.`publicación` ;
 
-CREATE TABLE IF NOT EXISTS `pp2sitio2`.`publicación` (
-  `id_publicación` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `pp2sitio2`.`publicacion` (
+  `id_publicacion` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `image` MEDIUMBLOB NULL, 
+  `descripcion` VARCHAR(45) NULL,
   `persona_cuil` BIGINT NOT NULL,
-  PRIMARY KEY (`id_publicación`),
-  INDEX `fk_publicación_persona1_idx` (`persona_cuil` ASC) VISIBLE,
-  CONSTRAINT `fk_publicación_persona1`
+  `fecha_hora` DATETIME NOT NULL,  
+  PRIMARY KEY (`id_publicacion`),
+  INDEX `fk_publicacion_persona1_idx` (`persona_cuil` ASC) VISIBLE,
+  CONSTRAINT `fk_publicacion_persona1`
     FOREIGN KEY (`persona_cuil`)
     REFERENCES `pp2sitio2`.`persona` (`cuil`))
 ENGINE = InnoDB
