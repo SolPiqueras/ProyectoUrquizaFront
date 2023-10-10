@@ -3,8 +3,8 @@ require_once 'model/Usuario.php';
 session_start();
 if (isset($_SESSION['usuario'])) {
   $usuario = unserialize($_SESSION['usuario']);
-  $nom = $usuario->getNombre();
-  $ape = $usuario->getApellido();
+//   $nom = $usuario->getNombre();
+//   $ape = $usuario->getApellido();
   $roles = $usuario->getRol();
 } else {
   header('Location: index.php');

@@ -196,10 +196,10 @@ class RepositorioUsuario
         $titulo = $publicacion->getTitulo();
         $imagen = $publicacion->getImagen();
         $descripcion = $publicacion->getDescripcion();
-        $cuil = $publicacion->getPersonaCuil();
+        $cuil = 5555;
         $fechaHora = $publicacion->getFecha();
         
-        $query = 'INSERT INTO publicacion (titulo, image, descripcion, persona_cuil, fecha_hora)';
+        $query = 'INSERT INTO publicacion (titulo, url, descripcion, persona_cuil, fecha_hora)';
         $query .= ' VALUES (?, ?, ?, ?, ?)';
         
         $stmt = self::$conexion->prepare($query);
@@ -208,13 +208,38 @@ class RepositorioUsuario
             return [false, "Error de preparación de la consulta"];
         }
         
-        $stmt->bind_param("sbsss", $titulo, $imagen, $descripcion, $cuil, $fechaHora);
+        $stmt->bind_param("sssss", $titulo, $imagen, $descripcion, $cuil, $fechaHora);
 
         if ($stmt->execute()) {
             return [true, "Publicación insertada correctamente"];
         } else {
             return [false, "Error al insertar la publicación en la base de datos: " . $stmt->error];
         }
+    }
+
+    public function obtenerUltimasPublicaciones()
+    {
+        $query = 'SELECT * FROM publicacion ORDER BY fecha_hora DESC LIMIT 3';
+        $result = self::$conexion->query($query);
+
+        if (!$result) {
+            return [];
+        }
+
+        $publicaciones = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $publicaciones[] = new Publicacion(
+                $row['id_publicacion'],
+                $row['persona_cuil'],
+                $row['titulo'],
+                $row['url'],
+                $row['descripcion'],
+                $row['fecha_hora']
+            );
+        }
+
+        return $publicaciones;
     }
 
 }

@@ -64,8 +64,8 @@ DROP TABLE IF EXISTS `pp2sitio2`.`publicación` ;
 CREATE TABLE IF NOT EXISTS `pp2sitio2`.`publicacion` (
   `id_publicacion` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
-  `image` MEDIUMBLOB NULL, 
-  `descripcion` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(300) NULL,
+  `url` VARCHAR(100) NULL,
   `persona_cuil` BIGINT NOT NULL,
   `fecha_hora` DATETIME NOT NULL,  
   PRIMARY KEY (`id_publicacion`),

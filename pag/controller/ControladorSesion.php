@@ -59,6 +59,7 @@ class ControladorSesion
         {
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
+
             return [true, "Los datos se actualizaron correctamente"];
         } 
         else
@@ -67,35 +68,27 @@ class ControladorSesion
         }
     }
 
-    public function insertarPublicacion($cuil, $titulo, $imagen, $descripcion, $fechaHora)
+    public function insertarPublicacion($cuil, $titulo, $imagen_destino, $descripcion, $fechaHora)
     {
         $repo = new RepositorioUsuario();
 
         // Crea una instancia de la clase Publicacion con los datos proporcionados
-        $publicacion = new Publicacion(null, $cuil, $titulo, $imagen, $descripcion, $fechaHora);
+        $publicacion = new Publicacion(null, $cuil, $titulo, $imagen_destino, $descripcion, $fechaHora);
         
         $resultado = $repo->insertarPublicacion($publicacion);
     
         if ($resultado[0]) {
+            session_start();
             return [true, "La publicación se ha guardado correctamente"];
         } else {
             return [false, "Error al guardar la publicación: " . $resultado[1]];
         }
     }
-    
 
-
-    // public function eliminar(Usuario $usuario)
-    // {
-    //     $repo = new RepositorioUsuario();
-    //     if($repo->eliminar($usuario))
-    //     {
-    //         return [true, "Usuario eliminado correctamente"];
-    //     } 
-    //     else
-    //     {
-    //         return [false, "Error al eliminar el usuario"];
-    //     }
-    // }
+    public function obtenerUltimasPublicaciones()
+    {
+        $repo = new RepositorioUsuario();
+        return $repo->obtenerUltimasPublicaciones();
+    }
 }
 ?>

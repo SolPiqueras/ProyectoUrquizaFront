@@ -2,6 +2,53 @@
 require_once 'controller/ControladorSesion.php';
 date_default_timezone_set("America/Argentina/Buenos_Aires");
 session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtiene los valores del formulario
+    $titulo = $_POST['titulo'];
+    $descripcion = $_POST['descripcion'];
+    $fechaHora = date('Y-m-d H:i:s');
+
+    // Procesa la imagen si se cargó
+    $imagen_path = 'img/publicaciones/';
+
+    if ($_FILES['imagen']['error'] === 0) {
+        // Genera un nombre único para la imagen
+        $imagen_nombre = uniqid() . '_' . $_FILES['imagen']['name'];
+        $imagen_destino = $imagen_path . $imagen_nombre;
+
+        // Mueve la imagen a la carpeta de destino
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_destino)) {
+            // Inserta los datos en la base de datos utilizando el controlador
+            $cs = new ControladorSesion();
+
+            // Reemplaza 'tu_cuil' con el valor de cuil del usuario actual
+            $cuil = unserialize($_SESSION['usuario'])->getCuil();
+
+            $resultado = $cs->insertarPublicacion($cuil, $titulo, $imagen_destino, $descripcion, $fechaHora);
+
+            if ($resultado[0]) {
+                // Éxito: La publicación se ha guardado correctamente en la base de datos   
+                session_start();             
+                header('Location: createpublicacion.php?mensaje=Publicación creada exitosamente');
+                exit();
+            } else {
+                // Error: No se pudo guardar la publicación en la base de datos
+                $error_message = "Error al guardar la publicación en la base de datos: " . $resultado[1];
+            }
+        } else {
+            $error_message = "Error al mover la imagen a la carpeta de destino.";
+        }
+    } else {
+        // Error: No se cargó una imagen válida
+        $error_message = "Error al cargar la imagen: " . $_FILES['imagen']['error'];
+    }
+}
+
+// Si llegaste aquí, algo salió mal, y puedes mostrar un mensaje de error si es necesario
+if (isset($error_message)) {
+    echo '<div id="mensaje" class="alert alert-danger text-center"><h2>' . $error_message . '</h2></div>';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,43 +96,5 @@ session_start();
 
     </form>
     </div>
-    </body>
+</body>
 </html>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtiene los valores del formulario
-    $titulo = $_POST['titulo'];
-    $descripcion = $_POST['descripcion'];
-
-    // Procesa la imagen (puedes necesitar más validación y manejo aquí)
-    if ($_FILES['imagen']['error'] === 0) {
-        $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-    } else {
-        $imagen = null; // Otra opción es proporcionar una imagen predeterminada
-    }
-
-    // Inserta los datos en la base de datos utilizando el controlador
-    $cs = new ControladorSesion();
-
-    // Reemplaza 'tu_cuil' con el valor de cuil del usuario actual
-    $cuil = unserialize($_SESSION['usuario'])->getCuil();
-    $fechaHora = date('Y-m-d H:i:s');
-
-    $resultado = $cs->insertarPublicacion($cuil, $titulo, $imagen, $descripcion, $fechaHora);
-
-    if ($resultado[0]) {
-        // Éxito: La publicación se ha guardado correctamente en la base de datos
-        header('Location: createpublicacion.php?mensaje=Publicación creada exitosamente');
-        exit();
-    } else {
-        // Error: No se pudo guardar la publicación en la base de datos
-        $error_message = "Error al guardar la publicación en la base de datos: " . $resultado[1];
-    }
-}
-
-// Si llegaste aquí, algo salió mal, y puedes mostrar un mensaje de error si es necesario
-if (isset($error_message)) {
-    echo '<div id="mensaje" class="alert alert-danger text-center"><h2>' . $error_message . '</h2></div>';
-}
-?>
