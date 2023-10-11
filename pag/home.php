@@ -198,74 +198,40 @@
 			require_once 'controller/ControladorSesion.php';
 			require_once 'model/publicacion.php';
 
-// Obtener las últimas 3 publicaciones
-$cs = new ControladorSesion();
-$ultimasPublicaciones = $cs->obtenerUltimasPublicaciones();
+			// Obtener las últimas 3 publicaciones
+			$cs = new ControladorSesion();
+			$ultimasPublicaciones = $cs->obtenerUltimasPublicaciones();
 
-if (!empty($ultimasPublicaciones)) {
-    foreach ($ultimasPublicaciones as $publicacion) {
-        echo '<article class="post">';
-        echo '<div class="post-header">';
-        
-        // Muestra la imagen aquí si está presente en la carpeta de imágenes
-        $imagenPath = $publicacion->getImagen(); // Debes ajustar la ruta de acuerdo a tu estructura de archivos
-        if (!empty($imagenPath) && file_exists($imagenPath)) {
-            echo '<div class="post-img"><img src="' . $imagenPath . '" alt="Imagen" style="width: 100%; height: 100%;"></div>';
-        } else {
-            // Muestra una imagen predeterminada o un mensaje de imagen no encontrada si es necesario
-            echo '<div class="post-img"><img src="img/default-image.jpg" alt="Imagen no encontrada"></div>';
-        }
+			if (!empty($ultimasPublicaciones)) {
+				foreach ($ultimasPublicaciones as $publicacion) {
+					echo '<article class="post">';
+					echo '<div class="post-header">';
+					
+					$imagenPath = $publicacion->getImagen(); 
+					if (!empty($imagenPath) && file_exists($imagenPath)) {
+						echo '<div class="post-img"><img src="' . $imagenPath . '" alt="Imagen" style="width: 100%; height: 100%;"></div>';
+					} else {
+						// Muestra una imagen predeterminada o un mensaje de imagen no encontrada si es necesario
+						echo '<div class="post-img"><img src="img/default-image.jpg" alt="Imagen no encontrada"></div>';
+					}
 
-        echo '</div>';
-        echo '<div class="post-body">';
-        echo '<span>' .date('d/m/Y ', strtotime(substr($publicacion->getFecha(),0,10))). '</span>';
-        echo '<h2>' . $publicacion->getTitulo() . '</h2>';
-        echo '<p>' . $publicacion->getDescripcion() . '</p>';
-        // Agrega un enlace para ver más detalles de la publicación si es necesario
-        echo '<a href="home.php?id=' . $publicacion->getIdPublicacion() . '" class="post-link">Leer más</a>';
-        echo '</div>';
-        echo '</article>';
-    }
-} else {
-    echo '<p>No hay publicaciones disponibles.</p>';
-}
+					echo '</div>';
+					echo '<div class="post-body">';
+					echo '<span>' .date('d/m/Y ', strtotime(substr($publicacion->getFecha(),0,10))). '</span>';
+					echo '<h2>' . $publicacion->getTitulo() . '</h2>';
+					echo '<p>' . $publicacion->getDescripcion() . '</p>';
+					
+					// Agrega un enlace para ver más detalles de la publicación si es necesario
+					echo '<a href="home.php?id=' . $publicacion->getIdPublicacion() . '" class="post-link">Leer más</a>';
+					echo '</div>';
+					echo '</article>';
+				}
+			} else {
+				echo '<p>No hay publicaciones disponibles.</p>';
+			}
 
-// ... (código posterior)
-?>
+			?>
 
-				<!-- <article class="post">
-					<div class="post-header">
-						<div class="post-img">Imagen</div>
-					</div>
-					<div class="post-body">
-						<span>Fecha</span>
-						<h2>Titulo</h2>
-						<p>Contenido</p>
-						<a href="" class="post-link">Leer más</a>
-					</div>
-				</article>
-				<article class="post">
-					<div class="post-header">
-						<div class="post-img">Imagen</div>
-					</div>
-					<div class="post-body">
-						<span>Fecha</span>
-						<h2>Titulo</h2>
-						<p>Contenido</p>
-						<a href="" class="post-link">Leer más</a>
-					</div>
-				</article>
-				<article class="post">
-					<div class="post-header">
-						<div class="post-img">Imagen</div>
-					</div>
-					<div class="post-body">
-						<span>Fecha</span>
-						<h2>Titulo</h2>
-						<p>Contenido</p>
-						<a href="" class="post-link">Leer más</a>
-					</div>
-				</article> -->
 			</div>
 		</section>
 	</div>

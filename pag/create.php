@@ -18,6 +18,34 @@ session_start();
     <title>Gestor del sistema</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/style2.css">
+    <script>
+        function validarCuil(cuil) {
+            // Expresión regular para verificar que el CUIL tenga 8 dígitos y los primeros 2 dígitos sean 20, 23, 24 o 27
+            var cuilRegex = /^(20|23|24|27)\d{6}$/;
+
+            if (cuil.match(cuilRegex)) {
+                // El CUIL es válido
+                return true;
+            } else {
+                // El CUIL es inválido, muestra un mensaje de error
+                alert("CUIL inválido");
+                return false;
+            }
+        }
+
+        function validarFormulario() {
+            var cuil = document.forms["registro"]["cuil"].value;
+
+            if (!validarCuil(cuil)) {
+                // Detener el envío del formulario si el CUIL es inválido
+                return false;
+            }
+
+            // Si la validación es exitosa, el formulario se enviará
+            return true;
+        }
+        </script>
+
 </head>
 <body class="container">
     <div class="jumbotron text-center">
@@ -33,7 +61,8 @@ session_start();
         ?>
         <div class="col-8 mx-auto">
 
-            <form action="create.php" method="post">
+        <form action="create.php" method="post" name="registro" onsubmit="return validarFormulario()">
+
                 <input name="cuil" class="form-control form-control-lg" placeholder="CUIL" required><br>
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" required><br>
                 <input name="nombre" class="form-control form-control-lg" placeholder="Nombre" required><br>
